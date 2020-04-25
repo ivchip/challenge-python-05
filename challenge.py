@@ -22,15 +22,11 @@ def trapezoid_area(base_minor, base_major, height):
 
 
 def regular_polygon_area(perimeter, apothem):
-    return round(3 * perimeter * apothem, 2)
+    return round(perimeter * apothem / 2, 2)
 
 
 def circumference_area(radius):
     return round(math.pi * pow(radius, 2), 2)
-
-
-def get_apothem(perimeter):
-    return perimeter * math.sqrt(3) / 2
 
 
 if __name__ == '__main__':
@@ -47,7 +43,8 @@ if __name__ == '__main__':
                 'diagonal_2': 8.0,
                 'base_minor': 5.0,
                 'base_major': 3.0,
-                'perimeter': 6.0,
+                'perimeter': 36.0,
+                'apothem': 4.0,
                 'radius': 3.0
             }
 
@@ -67,7 +64,7 @@ if __name__ == '__main__':
             self.assertEqual(12.0, trapezoid_area(self.values['base_minor'], self.values['base_major'], self.values['height']))
 
         def test_regular_polygon_area(self):
-            self.assertEqual(93.53, regular_polygon_area(self.values['perimeter'], get_apothem(self.values['perimeter'])))
+            self.assertEqual(72.0, regular_polygon_area(self.values['perimeter'], self.values['apothem']))
 
         def test_circumference_area(self):
             self.assertEqual(28.27, circumference_area(self.values['radius']))
